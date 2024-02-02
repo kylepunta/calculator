@@ -12,14 +12,14 @@ html, body {
 }
 
 .calculator {
-    background-color: #232342;
+    background-color: gray;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: stretch;
     min-height: 650px;
     min-width: 450px;
-    border: 12px solid darkslategray;
+    border: 12px solid dimgray;
     border-radius: 8%;
 }
 
