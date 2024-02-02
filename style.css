@@ -1,0 +1,22 @@
+html, body {
+    height: 100%;
+}
+
+.main-container {
+    height: 100%;
+    border: 2px solid salmon;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.calculator {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 600px;
+    min-width: 450px;
+    border: 12px solid darkslategray;
+}
