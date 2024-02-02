@@ -17,10 +17,46 @@ html, body {
     flex-direction: column;
     justify-content: center;
     align-items: stretch;
-    min-height: 650px;
-    min-width: 450px;
+    height: 650px;
+    width: 450px;
     border: 12px solid dimgray;
     border-radius: 8%;
+}
+
+.bottom-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.left-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    flex-grow: 10;
+}
+
+.right-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    flex: 18;
+}
+
+.right-container div {
+    display: flex;
+    flex: 0;
+}
+
+#equals {
+    flex: 1;
+    height: 150px;
+}
+
+.right-container > .button {
+    padding-left: 4px;
 }
 
 .buttons {
@@ -59,4 +95,9 @@ div button {
     margin: 14px;
     gap: 10px;
     padding: 2px;
+}
+
+.empty-button {
+    width: 75px;
+    height: 75px;
 }
