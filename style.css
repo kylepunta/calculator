@@ -53,10 +53,16 @@ html, body {
 #equals {
     flex: 1;
     height: 150px;
+    font-size: 30px;
+    padding: 14px;
+    border-radius: 8%;
+    width: 75px;
 }
 
 .right-container > .button {
-    padding-left: 4px;
+    margin-left: 2px;
+    border: 2px solid white;
+    border-radius: 10%;
 }
 
 .buttons {
@@ -66,13 +72,13 @@ html, body {
     flex: 1;
     /* border: 2px solid gray; */
     border-radius: 8%;
-    margin: 14px;
+    margin: 14px 14px 14px 13px;
     gap: 10px;
     padding: 2px;
 }
 
 .buttons div {
-    border: 2px solid white;
+    /* border: 2px solid white; */
     border-radius: 10%;
     /*flex: 1;*/
     /*min-height: 100px;*/
@@ -97,7 +103,11 @@ div button {
     padding: 2px;
 }
 
-.empty-button {
-    width: 75px;
-    height: 75px;
+#one {
+    margin-left: 1px;
+    margin-right: 2px;
+}
+
+#two {
+    margin-right: 3px;
 }
