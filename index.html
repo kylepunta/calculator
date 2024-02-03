@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Calculator</title>
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
@@ -11,7 +11,7 @@
         <div class="calculator">
 
             <div class="input">
-                <input type="number">
+                <!-- <input type="number"> -->
             </div>
 
             <div class="buttons">
@@ -22,10 +22,10 @@
                     <button class="remove">CE</button>
                 </div>
                 <div class="button">
-                    <button class="operator">/</button>
+                    <button class="operator">%</button>
                 </div>
                 <div class="button">
-                    <button class="operator">X</button>
+                    <button class="operator">/</button>
                 </div>
             </div>
 
@@ -40,7 +40,7 @@
                     <button class="operand">9</button>
                 </div>
                 <div class="button">
-                    <button class="operator">-</button>
+                    <button class="operator">X</button>
                 </div>
             </div>
 
@@ -55,7 +55,7 @@
                     <button class="operand">6</button>
                 </div>
                 <div class="button">
-                    <button class="operator">+</button>
+                    <button class="operator">-</button>
                 </div>
             </div>
 
@@ -73,18 +73,21 @@
                         </div>
                     </div>
         
-                    <div class="buttons">
+                    <div class="buttons" id="bottom-row">
                         <div class="button">
                             <button class="operand">0</button>
                         </div>
                         <div class="button">
                             <button class="operator">.</button>
                         </div>
+                        <div class="button">
+                            <button class="operator">=</button>
+                        </div>
                     </div>        
                 </div>
                 <div class="right-container">
                     <div class="button">
-                        <button class="operator" id="equals">=</button>
+                        <button class="operator" id="equals">+</button>
                     </div>
                 </div>
             </div>
