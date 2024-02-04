@@ -2,6 +2,7 @@ let currentNumber = 0;
 let firstNumber = 0;
 let lastNumber = 0;
 let currentOperator = 'empty';
+let operatorSymbol = '';
 let result = 0;
 
 function add(firstNumber, lastNumber){
@@ -61,20 +62,33 @@ console.log("Result " + result);
 
 operands.forEach((operand) => {
     operand.addEventListener('click', () => {
-        if (firstNumber == 0) {
-            if (display.textContent == 0) {
-                currentNumber = operand.textContent;
-                display.textContent = currentNumber;
+        if (result == 0) {
+            if (firstNumber == 0) {
+                if (display.textContent == 0) {
+                    currentNumber = operand.textContent;
+                    display.textContent = currentNumber;
+                }
+                else {
+                    currentNumber += operand.textContent;
+                    display.textContent = currentNumber;
+                };
             }
             else {
-                currentNumber += operand.textContent;
-                display.textContent = currentNumber;
-            };
+                if (currentNumber == 0) {
+                    currentNumber = operand.textContent;
+                    display.textContent += currentNumber;
+                }
+                else {
+                    currentNumber += operand.textContent;
+                    display.textContent += operand.textContent;
+                };
+            };  
         }
         else {
-            if (currentNumber == 0) {
+            if (firstNumber == 0) {
+                firstNumber = currentNumber;
                 currentNumber = operand.textContent;
-                display.textContent += currentNumber;
+                display.textContent += " " + operatorSymbol + " " + currentNumber;
             }
             else {
                 currentNumber += operand.textContent;
@@ -90,6 +104,7 @@ reset.addEventListener('click', () => {
     firstNumber = 0;
     lastNumber = 0;
     currentOperator = '';
+    result = 0;
 });
 
 operators.forEach((operator) => {
@@ -99,6 +114,7 @@ operators.forEach((operator) => {
             currentNumber = 0;
             display.textContent += " " + operator.textContent + " ";
             currentOperator = operator.id;
+            operatorSymbol = operator.textContent;
             console.log("Current Number: " + currentNumber);
             console.log("First Number " + firstNumber);
             console.log("Last Number " + lastNumber);
@@ -112,9 +128,10 @@ operators.forEach((operator) => {
             result = operate(firstNumber, lastNumber, currentOperator);
             display.textContent = result;
             currentNumber = result;
-            // firstNumber = 0;
+            firstNumber = 0;
             lastNumber = 0;
             currentOperator = operator.id;
+            operatorSymbol = operator.textContent;
             console.log("Current Number: " + currentNumber);
             console.log("First Number " + firstNumber);
             console.log("Last Number " + lastNumber);
