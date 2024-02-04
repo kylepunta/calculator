@@ -1,9 +1,19 @@
-// let buttons = document.querySelectorAll('button');
-// buttons.forEach((button) => {
-//     button.addEventListener('mousedown', () => {
-//         button.classList.add('mouse-down');
-//     });
-//     button.addEventListener('mouseup', () => {
-//         button.classList.remove('mouse-down');
-//     });
-// });
+let firstNumber = 0;
+let lastNumber = 0;
+let operator = "";
+
+function add(firstNumber, lastNumber){
+
+};
+
+function subtract(firstNumber, lastNumber){
+
+};
+
+function multiply(firstNumber, lastNumber){
+
+};
+
+function divide(firstNumber, lastNumber){
+
+};
