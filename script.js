@@ -62,42 +62,23 @@ console.log("Result " + result);
 operands.forEach((operand) => {
     operand.addEventListener('click', () => {
         if (firstNumber == 0) {
-            if (display.textContent == 0 || result != 0) {
+            if (display.textContent == 0) {
                 currentNumber = operand.textContent;
                 display.textContent = currentNumber;
             }
             else {
                 currentNumber += operand.textContent;
-                display.textContent += operand.textContent;    
+                display.textContent = currentNumber;
             };
-            console.log("Current Number: " + currentNumber);
-            console.log("First Number " + firstNumber);
-            console.log("Last Number " + lastNumber);
-            console.log("Current Operator " + currentOperator);
-            console.log("Result " + result);
-
         }
         else {
             if (currentNumber == 0) {
                 currentNumber = operand.textContent;
                 display.textContent += currentNumber;
-                console.log("Current Number: " + currentNumber);
-                console.log("First Number " + firstNumber);
-                console.log("Last Number " + lastNumber);
-                console.log("Current Operator " + currentOperator);
-                console.log("Result " + result);
-
             }
             else {
                 currentNumber += operand.textContent;
-                // currentNumber += operand.textContent;
                 display.textContent += operand.textContent;
-                console.log("Current Number: " + currentNumber);
-                console.log("First Number " + firstNumber);
-                console.log("Last Number " + lastNumber);
-                console.log("Current Operator " + currentOperator);
-                console.log("Result " + result);
-
             };
         };
     });
@@ -150,7 +131,7 @@ operateButton.addEventListener('click', () => {
     result = operate(firstNumber, lastNumber, currentOperator);
     display.textContent = result;
     currentNumber = result;
-    // firstNumber = 0;
+    firstNumber = 0;
     lastNumber = 0;
     console.log("Current Number: " + currentNumber);
     console.log("First Number " + firstNumber);
