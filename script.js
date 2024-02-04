@@ -17,3 +17,7 @@ function multiply(firstNumber, lastNumber){
 function divide(firstNumber, lastNumber){
     return firstNumber / lastNumber;
 };
+
+function operate(firstNumber, lastNumber, operator){
+
+};
