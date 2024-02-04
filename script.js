@@ -37,3 +37,11 @@ function operate(firstNumber, lastNumber, operator){
     };
     return result;
 };
+
+let display = document.querySelector('.value');
+let operands = document.querySelectorAll('.operand');
+let operators = document.querySelectorAll('.operator');
+let reset = document.querySelectorAll('.reset');
+let clearEntry = document.querySelectorAll('.remove');
+let decimal = document.querySelectorAll('.decimal');
+let modulo = document.querySelectorAll('.modulo');
