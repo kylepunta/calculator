@@ -24,6 +24,10 @@ function divide(firstNumber, lastNumber){
     return firstNumber / lastNumber;
 };
 
+function getRemainder(firstNumber, lastNumber){
+    return firstNumber % lastNumber;
+};
+
 function operate(firstNumber, lastNumber, operator){
     let result = 0;
     firstNumber = parseInt(firstNumber);
@@ -42,8 +46,17 @@ function operate(firstNumber, lastNumber, operator){
         case 'divide':
                     result = divide(firstNumber, lastNumber);
                     break;
+        case 'modulo':
+                    result = getRemainder(firstNumber, lastNumber);
+                    break;
     };
-    return result;
+    if (result % 1 != 0) {
+        result = result.toFixed(1);
+        return result;
+    }
+    else {
+        return result;
+    };
 };
 
 let display = document.querySelector('.value');
@@ -137,7 +150,7 @@ operators.forEach((operator) => {
 operateButton.addEventListener('click', () => {
     lastNumber = currentNumber;
     result = operate(firstNumber, lastNumber, currentOperator);
-    if (currentOperator = "divide" && result == 0) {
+    if (currentOperator = "divide" && lastNumber == 0) {
         display.textContent = "ERROR";
         currentNumber = '';
         firstNumber = 0;
