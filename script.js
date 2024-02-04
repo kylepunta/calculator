@@ -18,6 +18,9 @@ function multiply(firstNumber, lastNumber){
 };
 
 function divide(firstNumber, lastNumber){
+    if (lastNumber == 0) {
+        return 0
+    }
     return firstNumber / lastNumber;
 };
 
@@ -109,36 +112,24 @@ reset.addEventListener('click', () => {
 
 operators.forEach((operator) => {
     operator.addEventListener('click', () => {
-        if (firstNumber == 0) {
-            firstNumber = currentNumber;
-            currentNumber = 0;
-            display.textContent += " " + operator.textContent + " ";
-            currentOperator = operator.id;
-            operatorSymbol = operator.textContent;
-            console.log("Current Number: " + currentNumber);
-            console.log("First Number " + firstNumber);
-            console.log("Last Number " + lastNumber);
-            console.log("Current Operator " + currentOperator);
-            console.log("Result " + result);
-            
-
-        }
-        else {
-            lastNumber = currentNumber;
-            result = operate(firstNumber, lastNumber, currentOperator);
-            display.textContent = result;
-            currentNumber = result;
-            firstNumber = 0;
-            lastNumber = 0;
-            currentOperator = operator.id;
-            operatorSymbol = operator.textContent;
-            console.log("Current Number: " + currentNumber);
-            console.log("First Number " + firstNumber);
-            console.log("Last Number " + lastNumber);
-            console.log("Current Operator " + currentOperator);
-            console.log("Result " + result);
-            
-
+        if (display.textContent != "ERROR") {
+            if (firstNumber == 0) {
+                firstNumber = currentNumber;
+                currentNumber = 0;
+                display.textContent += " " + operator.textContent + " ";
+                currentOperator = operator.id;
+                operatorSymbol = operator.textContent;
+            }
+            else {
+                lastNumber = currentNumber;
+                result = operate(firstNumber, lastNumber, currentOperator);
+                display.textContent = result;
+                currentNumber = result;
+                firstNumber = 0;
+                lastNumber = 0;
+                currentOperator = operator.id;
+                operatorSymbol = operator.textContent;
+            };
         };
     });
 });
@@ -146,14 +137,20 @@ operators.forEach((operator) => {
 operateButton.addEventListener('click', () => {
     lastNumber = currentNumber;
     result = operate(firstNumber, lastNumber, currentOperator);
-    display.textContent = result;
-    currentNumber = result;
-    firstNumber = 0;
-    lastNumber = 0;
-    console.log("Current Number: " + currentNumber);
-    console.log("First Number " + firstNumber);
-    console.log("Last Number " + lastNumber);
-    console.log("Current Operator " + currentOperator);
-    console.log("Result " + result);
-    
+    if (currentOperator = "divide" && result == 0) {
+        display.textContent = "ERROR";
+        currentNumber = '';
+        firstNumber = 0;
+        lastNumber = 0;
+    }
+    else {
+        display.textContent = result;
+        currentNumber = result;
+        firstNumber = 0;
+        lastNumber = 0;   
+    }
+});
+
+clearEntry.addEventListener('click', () => {
+    currentNumber = 0;
 });
