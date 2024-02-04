@@ -1,7 +1,7 @@
 let currentNumber = 0;
 let firstNumber = 0;
 let lastNumber = 0;
-let currentOperator = 'empty';
+let currentOperator = 'none';
 let operatorSymbol = '';
 let result = 0;
 
@@ -30,8 +30,8 @@ function getRemainder(firstNumber, lastNumber){
 
 function operate(firstNumber, lastNumber, operator){
     let result = 0;
-    firstNumber = parseInt(firstNumber);
-    lastNumber = parseInt(lastNumber);
+    firstNumber = parseFloat(firstNumber);
+    lastNumber = parseFloat(lastNumber);
 
     switch (operator) {
         case 'add':
@@ -50,12 +50,12 @@ function operate(firstNumber, lastNumber, operator){
                     result = getRemainder(firstNumber, lastNumber);
                     break;
     };
-    if (result % 1 != 0) {
+    if (result % 1.0 != 0) {
         result = result.toFixed(1);
         return result;
     }
     else {
-        return result;
+        return parseInt(result);
     };
 };
 
@@ -65,7 +65,7 @@ let operators = document.querySelectorAll('.operator');
 let operateButton = document.querySelector('.operate');
 let reset = document.querySelector('.reset');
 let clearEntry = document.querySelector('.remove');
-let decimal = document.querySelector('.decimal');
+let decimalButton = document.querySelector('.decimal');
 let modulo = document.querySelector('.modulo');
 
 display.textContent = 0;
@@ -125,23 +125,25 @@ reset.addEventListener('click', () => {
 
 operators.forEach((operator) => {
     operator.addEventListener('click', () => {
-        if (display.textContent != "ERROR") {
-            if (firstNumber == 0) {
-                firstNumber = currentNumber;
-                currentNumber = 0;
-                display.textContent += " " + operator.textContent + " ";
-                currentOperator = operator.id;
-                operatorSymbol = operator.textContent;
-            }
-            else {
-                lastNumber = currentNumber;
-                result = operate(firstNumber, lastNumber, currentOperator);
-                display.textContent = result;
-                currentNumber = result;
-                firstNumber = 0;
-                lastNumber = 0;
-                currentOperator = operator.id;
-                operatorSymbol = operator.textContent;
+        if (currentNumber != 0) {
+            if (display.textContent != "ERROR") {
+                if (firstNumber == 0) {
+                    firstNumber = currentNumber;
+                    currentNumber = 0;
+                    display.textContent += " " + operator.textContent + " ";
+                    currentOperator = operator.id;
+                    operatorSymbol = operator.textContent;
+                }
+                else {
+                    lastNumber = currentNumber;
+                    result = operate(firstNumber, lastNumber, currentOperator);
+                    display.textContent = result;
+                    currentNumber = result;
+                    firstNumber = 0;
+                    lastNumber = 0;
+                    currentOperator = operator.id;
+                    operatorSymbol = operator.textContent;
+                };
             };
         };
     });
@@ -150,7 +152,7 @@ operators.forEach((operator) => {
 operateButton.addEventListener('click', () => {
     lastNumber = currentNumber;
     result = operate(firstNumber, lastNumber, currentOperator);
-    if (currentOperator = "divide" && lastNumber == 0) {
+    if (currentOperator == "divide" && lastNumber == 0) {
         display.textContent = "ERROR";
         currentNumber = '';
         firstNumber = 0;
@@ -166,4 +168,9 @@ operateButton.addEventListener('click', () => {
 
 clearEntry.addEventListener('click', () => {
     currentNumber = 0;
+});
+
+decimalButton.addEventListener('click', () => {
+    display.textContent += ".";
+    currentNumber += ".";
 });
