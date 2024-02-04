@@ -107,8 +107,14 @@ operands.forEach((operand) => {
                 display.textContent += " " + operatorSymbol + " " + currentNumber;
             }
             else {
-                currentNumber += operand.textContent;
-                display.textContent += operand.textContent;
+                if (currentNumber == 0) {
+                    currentNumber = operand.textContent;
+                    display.textContent += operand.textContent;
+                }
+                else {
+                    currentNumber += operand.textContent;
+                    display.textContent += operand.textContent;    
+                };
             };
         };
     });
@@ -119,13 +125,13 @@ reset.addEventListener('click', () => {
     currentNumber = 0;
     firstNumber = 0;
     lastNumber = 0;
-    currentOperator = '';
+    currentOperator = "none";
     result = 0;
 });
 
 operators.forEach((operator) => {
     operator.addEventListener('click', () => {
-        if (currentNumber != 0) {
+        if (currentNumber != 0 || firstNumber != 0) {
             if (display.textContent != "ERROR") {
                 if (firstNumber == 0) {
                     firstNumber = currentNumber;
@@ -133,6 +139,11 @@ operators.forEach((operator) => {
                     display.textContent += " " + operator.textContent + " ";
                     currentOperator = operator.id;
                     operatorSymbol = operator.textContent;
+                }
+                else if (firstNumber != 0 && currentNumber == 0) {
+                    currentOperator = operator.id;
+                    operatorSymbol = operator.textContent;
+                    display.textContent += " " + operator.textContent + " ";
                 }
                 else {
                     lastNumber = currentNumber;
@@ -157,17 +168,32 @@ operateButton.addEventListener('click', () => {
         currentNumber = '';
         firstNumber = 0;
         lastNumber = 0;
+        currentOperator = "none";   
     }
     else {
         display.textContent = result;
         currentNumber = result;
         firstNumber = 0;
-        lastNumber = 0;   
+        lastNumber = 0;
+        currentOperator = "none";   
     }
 });
 
 clearEntry.addEventListener('click', () => {
-    currentNumber = 0;
+    if (currentNumber != "") {
+        display.textContent = display.textContent.slice(0, display.textContent.length - 1);
+        currentNumber = currentNumber.slice(0, currentNumber.length - 1);
+    }
+    else {
+        if (currentOperator != "none") {
+            currentOperator = "none";
+            currentNumber = 0;
+            display.textContent = display.textContent.slice(0, display.textContent.length - 3);
+        }
+        else {
+            currentNumber = 0;
+        };
+    };
 });
 
 decimalButton.addEventListener('click', () => {
