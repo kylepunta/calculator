@@ -22,6 +22,8 @@ function divide(firstNumber, lastNumber){
 
 function operate(firstNumber, lastNumber, operator){
     let result = 0;
+    firstNumber = parseInt(firstNumber);
+    lastNumber = parseInt(lastNumber);
 
     switch (operator) {
         case 'add':
@@ -51,36 +53,52 @@ let modulo = document.querySelector('.modulo');
 
 display.textContent = 0;
 
-console.log(currentNumber);
-console.log(firstNumber);
-console.log(lastNumber);
-console.log(currentOperator);
-
+console.log("Current Number: " + currentNumber);
+console.log("First Number " + firstNumber);
+console.log("Last Number " + lastNumber);
+console.log("Current Operator " + currentOperator);
+console.log("Result " + result);
 
 operands.forEach((operand) => {
     operand.addEventListener('click', () => {
         if (firstNumber == 0) {
-            if (display.textContent == 0) {
+            if (display.textContent == 0 || result != 0) {
                 currentNumber = operand.textContent;
                 display.textContent = currentNumber;
             }
             else {
                 currentNumber += operand.textContent;
-                display.textContent = currentNumber;    
+                display.textContent += operand.textContent;    
             };
-            console.log(currentNumber);
-            console.log(firstNumber);
-            console.log(lastNumber);
-            console.log(currentOperator);
+            console.log("Current Number: " + currentNumber);
+            console.log("First Number " + firstNumber);
+            console.log("Last Number " + lastNumber);
+            console.log("Current Operator " + currentOperator);
+            console.log("Result " + result);
 
         }
         else {
-            display.textContent += operand.textContent;
-            console.log(currentNumber);
-            console.log(firstNumber);
-            console.log(lastNumber);
-            console.log(currentOperator);
+            if (currentNumber == 0) {
+                currentNumber = operand.textContent;
+                display.textContent += currentNumber;
+                console.log("Current Number: " + currentNumber);
+                console.log("First Number " + firstNumber);
+                console.log("Last Number " + lastNumber);
+                console.log("Current Operator " + currentOperator);
+                console.log("Result " + result);
 
+            }
+            else {
+                currentNumber += operand.textContent;
+                // currentNumber += operand.textContent;
+                display.textContent += operand.textContent;
+                console.log("Current Number: " + currentNumber);
+                console.log("First Number " + firstNumber);
+                console.log("Last Number " + lastNumber);
+                console.log("Current Operator " + currentOperator);
+                console.log("Result " + result);
+
+            };
         };
     });
 });
@@ -100,22 +118,28 @@ operators.forEach((operator) => {
             currentNumber = 0;
             display.textContent += " " + operator.textContent + " ";
             currentOperator = operator.id;
-            console.log(currentNumber);
-            console.log(firstNumber);
-            console.log(lastNumber);
-            console.log(currentOperator);
+            console.log("Current Number: " + currentNumber);
+            console.log("First Number " + firstNumber);
+            console.log("Last Number " + lastNumber);
+            console.log("Current Operator " + currentOperator);
+            console.log("Result " + result);
+            
 
         }
         else {
             lastNumber = currentNumber;
             result = operate(firstNumber, lastNumber, currentOperator);
             display.textContent = result;
-            firstNumber = result;
+            currentNumber = result;
+            // firstNumber = 0;
+            lastNumber = 0;
             currentOperator = operator.id;
-            console.log(currentNumber);
-            console.log(firstNumber);
-            console.log(lastNumber);
-            console.log(currentOperator);
+            console.log("Current Number: " + currentNumber);
+            console.log("First Number " + firstNumber);
+            console.log("Last Number " + lastNumber);
+            console.log("Current Operator " + currentOperator);
+            console.log("Result " + result);
+            
 
         };
     });
@@ -125,4 +149,13 @@ operateButton.addEventListener('click', () => {
     lastNumber = currentNumber;
     result = operate(firstNumber, lastNumber, currentOperator);
     display.textContent = result;
+    currentNumber = result;
+    // firstNumber = 0;
+    lastNumber = 0;
+    console.log("Current Number: " + currentNumber);
+    console.log("First Number " + firstNumber);
+    console.log("Last Number " + lastNumber);
+    console.log("Current Operator " + currentOperator);
+    console.log("Result " + result);
+    
 });
