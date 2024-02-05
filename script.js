@@ -78,7 +78,36 @@ console.log("Result " + result);
 
 operands.forEach((operand) => {
     operand.addEventListener('click', () => {
-        
+        if (firstNumber != 0 && currentOperator == "none") {
+            if (firstNumber == result) {
+                firstNumber = operand.textContent;
+                display.textContent = firstNumber;
+            }
+            else {
+                firstNumber += operand.textContent;
+                display.textContent = firstNumber;
+            };
+        }
+        else if (firstNumber == 0) {
+            if (display.textContent == 0) {
+                firstNumber = operand.textContent;
+                display.textContent = firstNumber;
+            }
+            else {
+                firstNumber += operand.textContent;
+                display.textContent = firstNumber;
+            };
+        }
+        else {
+            if (lastNumber == 0) {
+                lastNumber = operand.textContent
+                display.textContent = lastNumber;
+            }
+            else {
+                lastNumber += operand.textContent;
+                display.textContent = lastNumber;
+            };
+        };
     });
 });
 
@@ -93,26 +122,61 @@ reset.addEventListener('click', () => {
 
 operators.forEach((operator) => {
     operator.addEventListener('click', () => {
-        
+        if (lastNumber == 0) {
+            currentOperator = operator.id;
+        }
+        else {
+            result = operate(firstNumber, lastNumber, currentOperator);
+            display.textContent = result;
+            firstNumber = result;
+            currentOperator = operator.id;
+            lastNumber = 0;
+        };
     });
 });
 
 operateButton.addEventListener('click', () => {
-   
+    result = operate(firstNumber, lastNumber, currentOperator);
+    display.textContent = result;
+    firstNumber = result;
+    currentOperator = "none";
+    lastNumber = 0;
 });
 
 clearEntry.addEventListener('click', () => {
-    if (display.textContent != "") {
-        display.textContent = display.textContent.slice(0, display.textContent.length - 1);
-        currentNumber = display.textContent;
-        if (currentNumber == "") {
-            currentNumber = 0;
-            display.textContent = currentNumber;
-        };    
+    if (lastNumber == 0) {
+        if (firstNumber != "") {
+            display.textContent = display.textContent.slice(0, display.textContent.length - 1);
+            firstNumber = display.textContent;
+            if (firstNumber == "") {
+                firstNumber = 0;
+                display.textContent = firstNumber;
+            };   
+        };
+    }
+    else {
+        if (lastNumber != "") {
+            display.textContent = display.textContent.slice(0, display.textContent.length - 1);
+            lastNumber = display.textContent;
+            if (lastNumber == "") {
+                lastNumber = 0;
+                display.textContent = lastNumber;
+            };    
+        };
     };
 });
 
 decimalButton.addEventListener('click', () => {
-    display.textContent += ".";
-    currentNumber += ".";
+    if (lastNumber == 0) {
+        if (display.textContent.charAt(display.textContent.length - 1) != ".") {
+            firstNumber += ".";
+            display.textContent += ".";
+        }; 
+    }
+    else {
+        if (display.textContent.charAt(display.textContent.length - 1) != ".") {
+            lastNumber += ".";
+            display.textContent += ".";
+        };
+    };
 });
