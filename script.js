@@ -89,7 +89,7 @@ operands.forEach((operand) => {
             };    
         }
         else {
-            if (firstNumber == 0) {
+            if (firstNumber == 0 || currentNumber == 0) {
                 firstNumber = result;
                 currentNumber = operand.textContent;
                 display.textContent = currentNumber;
