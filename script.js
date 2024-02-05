@@ -78,13 +78,26 @@ console.log("Result " + result);
 
 operands.forEach((operand) => {
     operand.addEventListener('click', () => {
-        if (currentNumber == 0) {
-            currentNumber = operand.textContent;
-            display.textContent = currentNumber;
+        if (result == 0) {
+            if (currentNumber == 0) {
+                currentNumber = operand.textContent;
+                display.textContent = currentNumber;
+            }
+            else {
+                currentNumber += operand.textContent;
+                display.textContent = currentNumber;
+            };    
         }
         else {
-            currentNumber += operand.textContent;
-            display.textContent = currentNumber;
+            if (firstNumber == 0) {
+                firstNumber = result;
+                currentNumber = operand.textContent;
+                display.textContent = currentNumber;
+            }
+            else {
+                currentNumber += operand.textContent;
+                display.textContent = currentNumber;
+            };
         };
     });
 });
@@ -100,31 +113,19 @@ reset.addEventListener('click', () => {
 
 operators.forEach((operator) => {
     operator.addEventListener('click', () => {
-        if (currentNumber != 0 || firstNumber != 0) {
-            if (display.textContent != "ERROR") {
-                if (firstNumber == 0) {
-                    firstNumber = currentNumber;
-                    currentNumber = 0;
-                    display.textContent += " " + operator.textContent + " ";
-                    currentOperator = operator.id;
-                    operatorSymbol = operator.textContent;
-                }
-                else if (firstNumber != 0 && currentNumber == 0) {
-                    currentOperator = operator.id;
-                    operatorSymbol = operator.textContent;
-                    display.textContent += " " + operator.textContent + " ";
-                }
-                else {
-                    lastNumber = currentNumber;
-                    result = operate(firstNumber, lastNumber, currentOperator);
-                    display.textContent = result;
-                    currentNumber = result;
-                    firstNumber = 0;
-                    lastNumber = 0;
-                    currentOperator = operator.id;
-                    operatorSymbol = operator.textContent;
-                };
-            };
+        if (firstNumber == 0) {
+            firstNumber = currentNumber;
+            currentNumber = 0;
+            currentOperator = operator.id;
+        }
+        else {
+            lastNumber = currentNumber;
+            result = operate(firstNumber, lastNumber, currentOperator);
+            display.textContent = result;
+            currentOperator = operator.id;
+            firstNumber = 0;
+            lastNumber = 0;
+            currentNumber = result; 
         };
     });
 });
@@ -134,7 +135,7 @@ operateButton.addEventListener('click', () => {
     result = operate(firstNumber, lastNumber, currentOperator);
     if (currentOperator == "divide" && lastNumber == 0) {
         display.textContent = "ERROR";
-        currentNumber = '';
+        currentNumber = 0;
         firstNumber = 0;
         lastNumber = 0;
         currentOperator = "none";   
