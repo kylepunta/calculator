@@ -1,5 +1,5 @@
-let firstNumber = 0;
-let lastNumber = 0;
+let numberOne = 0;
+let numberTwo = 0;
 let currentOperator = 'none';
 let operatorSymbol = '';
 let result = 0;
@@ -71,34 +71,34 @@ display.textContent = 0;
 
 operands.forEach((operand) => {
     operand.addEventListener('click', () => {
-        if (firstNumber != 0 && currentOperator == "none") {
-            if (firstNumber == result) {
-                firstNumber = operand.textContent;
-                display.textContent = firstNumber;
+        if (numberOne != 0 && currentOperator == "none") {
+            if (numberOne == result) {
+                numberOne = operand.textContent;
+                display.textContent = numberOne;
             }
             else {
-                firstNumber += operand.textContent;
-                display.textContent = firstNumber;
+                numberOne += operand.textContent;
+                display.textContent = numberOne;
             };
         }
-        else if (firstNumber == 0) {
+        else if (numberOne == 0) {
             if (display.textContent == 0) {
-                firstNumber = operand.textContent;
-                display.textContent = firstNumber;
+                numberOne = operand.textContent;
+                display.textContent = numberOne;
             }
             else {
-                firstNumber += operand.textContent;
-                display.textContent = firstNumber;
+                numberOne += operand.textContent;
+                display.textContent = numberOne;
             };
         }
         else {
-            if (lastNumber == 0) {
-                lastNumber = operand.textContent
-                display.textContent = lastNumber;
+            if (numberTwo == 0) {
+                numberTwo = operand.textContent
+                display.textContent = numberTwo;
             }
             else {
-                lastNumber += operand.textContent;
-                display.textContent = lastNumber;
+                numberTwo += operand.textContent;
+                display.textContent = numberTwo;
             };
         };
     });
@@ -106,68 +106,68 @@ operands.forEach((operand) => {
 
 reset.addEventListener('click', () => {
     display.textContent = 0;
-    firstNumber = 0;
-    lastNumber = 0;
+    numberOne = 0;
+    numberTwo = 0;
     currentOperator = "none";
     result = 0;
 });
 
 operators.forEach((operator) => {
     operator.addEventListener('click', () => {
-        if (lastNumber == 0) {
+        if (numberTwo == 0) {
             currentOperator = operator.id;
         }
         else {
-            result = operate(firstNumber, lastNumber, currentOperator);
+            result = operate(numberOne, numberTwo, currentOperator);
             display.textContent = result;
-            firstNumber = result;
+            numberOne = result;
             currentOperator = operator.id;
-            lastNumber = 0;
+            numberTwo = 0;
         };
     });
 });
 
 operateButton.addEventListener('click', () => {
-    result = operate(firstNumber, lastNumber, currentOperator);
+    result = operate(numberOne, numberTwo, currentOperator);
     display.textContent = result;
-    firstNumber = result;
+    numberOne = result;
     currentOperator = "none";
-    lastNumber = 0;
+    numberTwo = 0;
 });
 
 clearEntry.addEventListener('click', () => {
-    if (lastNumber == 0) {
-        if (firstNumber != "") {
+    if (numberTwo == 0) {
+        if (numberOne != "") {
             display.textContent = display.textContent.slice(0, display.textContent.length - 1);
-            firstNumber = display.textContent;
-            if (firstNumber == "") {
-                firstNumber = 0;
-                display.textContent = firstNumber;
+            numberOne = display.textContent;
+            if (numberOne == "") {
+                numberOne = 0;
+                display.textContent = numberOne;
             };   
         };
     }
     else {
-        if (lastNumber != "") {
+        if (numberTwo != "") {
             display.textContent = display.textContent.slice(0, display.textContent.length - 1);
-            lastNumber = display.textContent;
-            if (lastNumber == "") {
-                lastNumber = 0;
-                display.textContent = lastNumber;
+            numberTwo = display.textContent;
+            if (numberTwo == "") {
+                numberTwo = 0;
+                display.textContent = numberTwo;
             };    
         };
     };
 });
 
 decimalButton.addEventListener('click', () => {
-    if (lastNumber == 0) {
+    if (numberTwo == 0) {
         if (display.textContent.charAt(display.textContent.length - 1) != ".") {
-            firstNumber += ".";
+            numberOne += ".";
             display.textContent += ".";
         }; 
     }
     else {
         if (display.textContent.charAt(display.textContent.length - 1) != ".") {
-            lastNumber += ".";
+            numberTwo += ".";
             display.textContent += ".";
         };
     };
