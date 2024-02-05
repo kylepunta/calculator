@@ -1,4 +1,3 @@
-let currentNumber = 0;
 let firstNumber = 0;
 let lastNumber = 0;
 let currentOperator = 'none';
@@ -70,12 +69,6 @@ let modulo = document.querySelector('.modulo');
 
 display.textContent = 0;
 
-console.log("Current Number: " + currentNumber);
-console.log("First Number " + firstNumber);
-console.log("Last Number " + lastNumber);
-console.log("Current Operator " + currentOperator);
-console.log("Result " + result);
-
 operands.forEach((operand) => {
     operand.addEventListener('click', () => {
         if (firstNumber != 0 && currentOperator == "none") {
@@ -113,7 +106,6 @@ operands.forEach((operand) => {
 
 reset.addEventListener('click', () => {
     display.textContent = 0;
-    currentNumber = 0;
     firstNumber = 0;
     lastNumber = 0;
     currentOperator = "none";
