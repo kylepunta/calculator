@@ -65,7 +65,6 @@ let operateButton = document.querySelector('.operate');
 let reset = document.querySelector('.reset');
 let clearEntry = document.querySelector('.remove');
 let decimalButton = document.querySelector('.decimal');
-let modulo = document.querySelector('.modulo');
 
 display.textContent = 0;
 
@@ -82,7 +81,7 @@ operands.forEach((operand) => {
             };
         }
         else if (numberOne == 0) {
-            if (display.textContent == 0) {
+            if (display.textContent == 0 || display.textContent == "ERROR") {
                 numberOne = operand.textContent;
                 display.textContent = numberOne;
             }
@@ -118,21 +117,39 @@ operators.forEach((operator) => {
             currentOperator = operator.id;
         }
         else {
-            result = operate(numberOne, numberTwo, currentOperator);
-            display.textContent = result;
-            numberOne = result;
-            currentOperator = operator.id;
-            numberTwo = 0;
+            if (currentOperator == "divide" && numberTwo == 0) {
+                display.textContent = "ERROR";
+                result = 0;
+                numberOne = 0;
+                numberTwo = 0;
+                currentOperator = "none";
+            }
+            else {
+                result = operate(numberOne, numberTwo, currentOperator);
+                display.textContent = result;
+                numberOne = result;
+                currentOperator = operator.id;
+                numberTwo = 0;    
+            };
         };
     });
 });
 
 operateButton.addEventListener('click', () => {
-    result = operate(numberOne, numberTwo, currentOperator);
-    display.textContent = result;
-    numberOne = result;
-    currentOperator = "none";
-    numberTwo = 0;
+    if (currentOperator == "divide" && numberTwo == 0) {
+        display.textContent = "ERROR";
+        result = 0;
+        numberOne = 0;
+        numberTwo = 0;
+        currentOperator = "none";
+    }
+    else {
+        result = operate(numberOne, numberTwo, currentOperator);
+        display.textContent = result;
+        numberOne = result;
+        currentOperator = "none";
+        numberTwo = 0;
+    };
 });
 
 clearEntry.addEventListener('click', () => {
