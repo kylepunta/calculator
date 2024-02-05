@@ -3,6 +3,7 @@ let numberTwo = 0;
 let currentOperator = 'none';
 let operatorSymbol = '';
 let result = 0;
+let hasDecimal = false;
 
 function add(firstNumber, lastNumber){
     return firstNumber + lastNumber;
@@ -109,6 +110,7 @@ reset.addEventListener('click', () => {
     numberTwo = 0;
     currentOperator = "none";
     result = 0;
+    hasDecimal = false;
 });
 
 operators.forEach((operator) => {
@@ -177,13 +179,25 @@ clearEntry.addEventListener('click', () => {
 
 decimalButton.addEventListener('click', () => {
     if (numberTwo == 0) {
-        if (display.textContent.charAt(display.textContent.length - 1) != ".") {
+        for (let i = 0; i < display.textContent.length; i++) {
+            if (display.textContent.charAt(i) == ".") {
+                hasDecimal = true;
+                break;
+            };
+        };
+        if (!hasDecimal) {
             numberOne += ".";
             display.textContent += ".";
-        }; 
+        };
     }
     else {
-        if (display.textContent.charAt(display.textContent.length - 1) != ".") {
+        for (let i = 0; i < display.textContent.length; i++) {
+            if (display.textContent.charAt(i) == ".") {
+                hasDecimal = true;
+                break;
+            };
+        };
+        if (!hasDecimal) {
             numberTwo += ".";
             display.textContent += ".";
         };
