@@ -78,44 +78,13 @@ console.log("Result " + result);
 
 operands.forEach((operand) => {
     operand.addEventListener('click', () => {
-        if (result == 0) {
-            if (firstNumber == 0) {
-                if (display.textContent == 0) {
-                    currentNumber = operand.textContent;
-                    display.textContent = currentNumber;
-                }
-                else {
-                    currentNumber += operand.textContent;
-                    display.textContent = currentNumber;
-                };
-            }
-            else {
-                if (currentNumber == 0) {
-                    currentNumber = operand.textContent;
-                    display.textContent += currentNumber;
-                }
-                else {
-                    currentNumber += operand.textContent;
-                    display.textContent += operand.textContent;
-                };
-            };  
+        if (currentNumber == 0) {
+            currentNumber = operand.textContent;
+            display.textContent = currentNumber;
         }
         else {
-            if (firstNumber == 0) {
-                firstNumber = currentNumber;
-                currentNumber = operand.textContent;
-                display.textContent += " " + operatorSymbol + " " + currentNumber;
-            }
-            else {
-                if (currentNumber == 0) {
-                    currentNumber = operand.textContent;
-                    display.textContent += operand.textContent;
-                }
-                else {
-                    currentNumber += operand.textContent;
-                    display.textContent += operand.textContent;    
-                };
-            };
+            currentNumber += operand.textContent;
+            display.textContent = currentNumber;
         };
     });
 });
