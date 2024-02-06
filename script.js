@@ -59,7 +59,7 @@ function operate(firstNumber, lastNumber, operator){
     };
 };
 
-let display = document.querySelector('.value');
+let display = document.querySelector('.');
 let operands = document.querySelectorAll('.operand');
 let operators = document.querySelectorAll('.operator');
 let operateButton = document.querySelector('.operate');
