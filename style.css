@@ -167,3 +167,7 @@ button:active {
 .remove {
     background-color: #f7f2ff;
 }
+
+.isNotDepressed {
+    background-color: #ff8080;
+}
