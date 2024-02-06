@@ -14,51 +14,51 @@
         <div class="calculator">
 
             <div class="input">
-                <div class="value"></div>
+                <div class="value" data-display></div>
             </div>
 
             <div class="buttons">
                 <div class="button">
-                    <button class="reset">AC</button>
+                    <button class="reset" data-reset>AC</button>
                 </div>
                 <div class="button">
-                    <button class="remove">CE</button>
+                    <button class="remove" data-delete>CE</button>
                 </div>
                 <div class="button">
-                    <button class="operator" id="modulo">%</button>
+                    <button class="operator" data-operator="modulo">%</button>
                 </div>
                 <div class="button">
-                    <button class="operator" id="divide">/</button>
-                </div>
-            </div>
-
-            <div class="buttons">
-                <div class="button">
-                    <button class="operand">7</button>
-                </div>
-                <div class="button">
-                    <button class="operand">8</button>
-                </div>
-                <div class="button">
-                    <button class="operand">9</button>
-                </div>
-                <div class="button">
-                    <button class="operator" id="multiply">x</button>
+                    <button class="operator" data-operator="divide">/</button>
                 </div>
             </div>
 
             <div class="buttons">
                 <div class="button">
-                    <button class="operand">4</button>
+                    <button class="operand" data-operand="7">7</button>
                 </div>
                 <div class="button">
-                    <button class="operand">5</button>
+                    <button class="operand" data-operand="8">8</button>
                 </div>
                 <div class="button">
-                    <button class="operand">6</button>
+                    <button class="operand" data-operand="9">9</button>
                 </div>
                 <div class="button">
-                    <button class="operator" id="subtract">-</button>
+                    <button class="operator" id="multiply" data-operator="multiply">x</button>
+                </div>
+            </div>
+
+            <div class="buttons">
+                <div class="button">
+                    <button class="operand" data-operand="4">4</button>
+                </div>
+                <div class="button">
+                    <button class="operand" data-operand="5">5</button>
+                </div>
+                <div class="button">
+                    <button class="operand" data-operand="6">6</button>
+                </div>
+                <div class="button">
+                    <button class="operator" data-operator="subtract">-</button>
                 </div>
             </div>
 
@@ -66,31 +66,31 @@
                 <div class="left-container">
                     <div class="buttons">
                         <div class="button">
-                            <button class="operand" id="one">1</button>
+                            <button class="operand" data-operand="1">1</button>
                         </div>
                         <div class="button">
-                            <button class="operand" id="two">2</button>
+                            <button class="operand" data-operand="2">2</button>
                         </div>
                         <div class="button">
-                            <button class="operand" id="three">3</button>
+                            <button class="operand" data-operand="3">3</button>
                         </div>
                     </div>
         
                     <div class="buttons" id="bottom-row">
                         <div class="button">
-                            <button class="operand">0</button>
+                            <button class="operand" data-operand="0">0</button>
                         </div>
                         <div class="button">
-                            <button class="decimal">.</button>
+                            <button class="decimal" data-decimal>.</button>
                         </div>
                         <div class="button">
-                            <button class="operate" id="equals">=</button>
+                            <button class="operate" id="equals" data-equals>=</button>
                         </div>
                     </div>        
                 </div>
                 <div class="right-container">
                     <div class="button">
-                        <button class="operator" id="add">+</button>
+                        <button class="operator" id="add" data-operator="add">+</button>
                     </div>
                 </div>
             </div>
