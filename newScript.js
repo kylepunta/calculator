@@ -1,14 +1,3 @@
-// A calculator has a function for each data-button / data-operator:
-
-// AC -> reset()
-// CE -> deleteNumber()
-// = -> operate()
-// + -> add()
-// - -> subtract()
-// x -> multiply()
-// / -> divide()
-// % -> getRemainder()
-
 function add(numberOne, numberTwo){
     return numberOne + numberTwo;
 };
@@ -62,10 +51,7 @@ function operate(numberOne, numberTwo, currentOperator){
     else {
         return result;
     };
-
 }
-
-// A calculator carries out an operation on two numbers at a time.
 
 let previousNumber = "0";
 let currentNumber = "0";
@@ -74,11 +60,6 @@ let currentOperator = undefined;
 let previousKey = undefined;
 const decimal = ".";
 let isNotDepressed = true;
-
-// numberOne -> currentOperator -> numberTwo = operate(numberOne, numberTwo, currentOperator) -> result
-
-// A function is needed to append the selected number to the display
-// First, let's create reference our buttons and display with variables
 
 let display = document.querySelector('[data-display]');
 display.textContent = currentNumber;
@@ -89,19 +70,11 @@ let deleteButton = document.querySelector('[data-delete]');
 let equalsButton = document.querySelector('[data-equals]');
 let decimalButton = document.querySelector('[data-decimal]');
 
-// operands.forEach(operand => {
-//     console.log(operand.getAttribute('data-operand'));
-// });
-
-// Now lets create the function we need to append the selected number to the display
-
 function appendToDisplay(operand){
-    // currentNumber += operand;
     display.textContent += operand;
 };
 
 function updateDisplay(operand){
-    // currentNumber = operand;
     display.textContent = operand;
 };
 
@@ -165,31 +138,16 @@ operands.forEach((operand) => {
             previousKey = "operand";
             currentNumber = operand.textContent;
             updateDisplay(operand.textContent);
-            console.log("Previous Number: " + previousNumber);
-            console.log("Current Number: " + currentNumber);
-            console.log("Current Operator: " + currentOperator);
-            console.log("Result: " + result);
-            console.log(previousKey);
         }
         else if (currentNumber === "0") {
             previousKey = "operand";
             currentNumber = operand.textContent;
             updateDisplay(operand.textContent);
-            console.log("Previous Number: " + previousNumber);
-            console.log("Current Number: " + currentNumber);
-            console.log("Current Operator: " + currentOperator);
-            console.log("Result: " + result);
-            console.log(previousKey);
         }
         else {
             previousKey = "operand";
             currentNumber += operand.textContent;
             appendToDisplay(operand.textContent);
-            console.log("Previous Number: " + previousNumber);
-            console.log("Current Number: " + currentNumber);
-            console.log("Current Operator: " + currentOperator);
-            console.log("Result: " + result);
-            console.log(previousKey);
         };
     });
 });
@@ -199,11 +157,6 @@ equalsButton.addEventListener('click', () => {
     result = operate(previousNumber, currentNumber, currentOperator);
     updateDisplay(result);
     previousNumber = result;
-    console.log("Previous Number: " + previousNumber);
-    console.log("Current Number: " + currentNumber);
-    console.log("Current Operator: " + currentOperator);
-    console.log("Result: " + result);
-    console.log(previousKey);
 });
 
 operators.forEach((operator) => {
@@ -217,22 +170,12 @@ operators.forEach((operator) => {
                 previousKey = "operator";
                 currentOperator = chooseOperator(operator.getAttribute('data-operator'));
                 currentNumber = "0";
-                console.log("Previous Number: " + previousNumber);
-                console.log("Current Number: " + currentNumber);
-                console.log("Current Operator: " + currentOperator);
-                console.log("Result: " + result);
-                console.log(previousKey);
             }
             else if (previousNumber == "0"){
                 previousKey = "operator";
                 currentOperator = chooseOperator(operator.getAttribute('data-operator'));
                 previousNumber = currentNumber;
                 currentNumber = "0";
-                console.log("Previous Number: " + previousNumber);
-                console.log("Current Number: " + currentNumber);
-                console.log("Current Operator: " + currentOperator);
-                console.log("Result: " + result);
-                console.log(previousKey);
             }
             else {
                 previousKey = "operator";
@@ -241,11 +184,6 @@ operators.forEach((operator) => {
                 updateDisplay(result);
                 previousNumber = currentNumber;
                 currentNumber = "0";
-                console.log("Previous Number: " + previousNumber);
-                console.log("Current Number: " + currentNumber);
-                console.log("Current Operator: " + currentOperator);
-                console.log("Result: " + result);
-                console.log(previousKey);
             };
         };
     });
@@ -255,32 +193,17 @@ resetButton.addEventListener('click', () => {
     previousKey = "reset";
     reset();
     updateDisplay(currentNumber);
-    console.log("Previous Number: " + previousNumber);
-    console.log("Current Number: " + currentNumber);
-    console.log("Current Operator: " + currentOperator);
-    console.log("Result: " + result);
-    console.log(previousKey);
 });
 
 decimalButton.addEventListener('click', () => {
     previousKey = "operand";
     if (currentNumber.includes(".")) {
-        console.log("Already contains a decimal");
-        console.log("Previous Number: " + previousNumber);
-        console.log("Current Number: " + currentNumber);
-        console.log("Current Operator: " + currentOperator);
-        console.log("Result: " + result);    
     }
     else if (previousKey == "operate") {
-        console.log("Cannot enter decimal");
     }
     else {
         currentNumber += decimal;
         display.textContent += decimal;  
-        console.log("Previous Number: " + previousNumber);
-        console.log("Current Number: " + currentNumber);
-        console.log("Current Operator: " + currentOperator);
-        console.log("Result: " + result);      
     };
 });
 
@@ -288,10 +211,5 @@ deleteButton.addEventListener('click', () => {
     if (previousKey != "operate") {
         previousKey = "delete";
         deleteEntry();
-        console.log("Previous Number: " + previousNumber);
-        console.log("Current Number: " + currentNumber);
-        console.log("Current Operator: " + currentOperator);
-        console.log("Result: " + result);
-        console.log(previousKey);    
     };
 });
