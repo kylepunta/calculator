@@ -168,6 +168,6 @@ button:active {
     background-color: #f7f2ff;
 }
 
-.isNotDepressed {
+.isDepressed {
     background-color: #ff8080;
 }
