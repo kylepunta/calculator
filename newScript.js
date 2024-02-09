@@ -59,7 +59,7 @@ let result = "0";
 let currentOperator = undefined;
 let previousKey = undefined;
 const decimal = ".";
-let isNotDepressed = true;
+let isDepressed = false;
 
 let display = document.querySelector('[data-display]');
 display.textContent = currentNumber;
@@ -113,19 +113,15 @@ function deleteEntry(){
 
 let buttons = document.querySelectorAll('button');
 buttons.forEach((button) => {
-
     button.addEventListener('click', () => {
-
-        if (isNotDepressed) {
-
-        }
-        else {
+        if (isDepressed) {
             operators.forEach((operator) => {
-                if (operator.classList.contains("isNotDepressed")) {
-                    operator.classList.remove("isNotDepressed");
-                    isNotDepressed = true;
-                };
-            });
+                if (operator.classList.contains("isDepressed")) {
+                        operator.classList.remove("isDepressed");
+                        isDepressed = false;
+                    };
+                }
+            );
         };
     });
 });
@@ -161,9 +157,9 @@ equalsButton.addEventListener('click', () => {
 
 operators.forEach((operator) => {
     operator.addEventListener('click', () => {
-        if (isNotDepressed) {
-            operator.classList.add('isNotDepressed');
-            isNotDepressed = false;
+        if (!isDepressed) {
+            operator.classList.add('isDepressed');
+            isDepressed = true;
         }
         if (previousKey != "operator") {
             if (previousKey == "operate") {
